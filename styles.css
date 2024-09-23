@@ -1,0 +1,57 @@
+body {
+    background-color: #f0c5c5;
+}
+
+.recent-winners {
+    margin: 20px 0;
+}
+
+.candidate-details {
+    font-size: 0.9em; /* Smaller font size for details */
+    color: #555; /* Slightly darker text for contrast */
+    margin-top: 10px; /* Space between brief info and details */
+    padding: 5px; /* Add padding for better readability */
+}
+
+.candidate-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.candidate-card {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    width: calc(33% - 20px); /* 3 in a row with margins */
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: auto; /* Allow height to adjust based on content */
+    overflow: hidden; /* Hide overflow */
+    transition: all 0.2s ease; /* Smooth transition */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.candidate-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.candidate-image {
+    width: 35%; /* Make the image width 100% of the card */
+    height: 135px; /* Fixed height to maintain uniformity */
+    object-fit: cover; /* Keeps the aspect ratio and fills the card */
+}
+
+@media (max-width: 768px) {
+    .candidate-card {
+        width: calc(50% - 20px); /* 2 in a row on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .candidate-card {
+        width: 100%; /* 1 in a row on very small screens */
+    }
+}
