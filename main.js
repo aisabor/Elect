@@ -1,3 +1,5 @@
+import { candidatesByCountry } from './candidates.js';
+
 const recentWinners = [
     {
         name: 'Candidate C',
@@ -19,6 +21,7 @@ const recentWinners = [
     },
 ];
 
+// Function to show the landing page
 function showLandingPage() {
     const recentWinnersList = recentWinners.map(winner => `
         <div class="candidate-card">
@@ -29,15 +32,19 @@ function showLandingPage() {
     `).join('');
 
     document.querySelector('#app').innerHTML = `
-        <h1 class="text-center">Mock Voting App</h1>
+       <div class="logo-container">
+            <img src="images/logo.jpg" alt="Logo" style="width: 100px;" class="rounded-pill img-fluid">
+        </div>
+        <br>
+        <h1 class="text-cent">Welcome To MOCK BALLOT</h1>
         <div class="recent-winners">
             <h2>Recently Won Candidates</h2>
             <div class="candidate-row">${recentWinnersList}</div>
-            <button id="seeMore" class="btn btn-link"></button>
+            <button id="seeMore" class="btn btn-link">See More Candidates</button>
         </div>
-        <div class="text-center mt-4">
-            <button id="subscribe" class="btn btn-primary mx-2">Subscribe Version</button>
-            <button id="free" class="btn btn-secondary mx-2">Free Version</button>
+        <div id="top-right-buttons">
+            <button id="subscribe" class="text-primary">Subscribe Version</button><br><br>
+            <button id="free" class="text-danger">Free Version</button>
         </div>
     `;
 
@@ -50,6 +57,7 @@ function showLandingPage() {
     });
 }
 
+// Function to show country selection
 function showCountrySelection(isSubscribed) {
     const modeText = isSubscribed ? 'Subscribe Version' : 'Free Version';
     const countries = ['USA', 'JAPAN', 'India', 'Canada'];
@@ -79,38 +87,36 @@ function showCountrySelection(isSubscribed) {
     });
 }
 
+// Function to show candidates based on selected country
 function showCandidates(country, isSubscribed) {
-    // Load candidates from candidates.js (or define here if not using a separate file)
-    import('./candidates.js').then(module => {
-        const candidates = module.candidatesByCountry[country] || [];
-        
-        const candidatesList = candidates.map(candidate => `
-            <div class="candidate-card">
-                <img src="${candidate.img}" alt="${candidate.name}" class="img-fluid candidate-image">
-                <h5>${candidate.name}</h5>
-                <p>${candidate.details}</p>
-                <button class="btn btn-success vote-btn" data-name="${candidate.name}">Vote</button>
-            </div>
-        `).join('');
+    const candidates = candidatesByCountry[country] || [];
+    
+    const candidatesList = candidates.map(candidate => `
+        <div class="candidate-card">
+            <img src="${candidate.img}" alt="${candidate.name}" class="img-fluid candidate-image">
+            <h5>${candidate.name}</h5>
+            <p>${candidate.details}</p>
+            <button class="btn btn-success vote-btn" data-name="${candidate.name}">Vote</button>
+        </div>
+    `).join('');
 
-        document.querySelector('#app').innerHTML = `
-            <h1 class="text-center">${country} Candidates</h1>
-            <div class="candidate-row">${candidatesList}</div>
-            <div class="text-center mt-4">
-                <button id="backBtn" class="btn btn-secondary">Back</button>
-            </div>
-        `;
+    document.querySelector('#app').innerHTML = `
+        <h1 class="text-center">${country} Candidates</h1>
+        <div class="candidate-row">${candidatesList}</div>
+        <div class="text-center mt-4">
+            <button id="backBtn" class="btn btn-secondary">Back</button>
+        </div>
+    `;
 
-        document.querySelectorAll('.vote-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const candidateName = e.target.getAttribute('data-name');
-                alert(`You voted for ${candidateName}!`);
-            });
+    document.querySelectorAll('.vote-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const candidateName = e.target.getAttribute('data-name');
+            alert(`You voted for ${candidateName}!`);
         });
+    });
 
-        document.querySelector('#backBtn').addEventListener('click', () => {
-            showCountrySelection(isSubscribed);
-        });
+    document.querySelector('#backBtn').addEventListener('click', () => {
+        showCountrySelection(isSubscribed);
     });
 }
 
