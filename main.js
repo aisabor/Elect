@@ -33,7 +33,7 @@ function showLandingPage() {
 
     document.querySelector('#app').innerHTML = `
        <div class="logo-container">
-            <img src="images/logo.jpg" alt="Logo" style="width: 100px;" class="rounded-pill img-fluid">
+            <img src="images/logo.jpg" alt="Logo" style="width: 130px;" class="rounded-pill img-fluid">
         </div>
         <br>
         <h1 class="text-cent">Welcome To MOCK BALLOT</h1>

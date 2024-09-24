@@ -131,3 +131,55 @@ button:active {
         margin: 5px 0; /* Margin between buttons */
     }
 }
+footer {
+    background-color: white; /* Dark background */
+    color: rgb(15, 9, 9);
+}
+
+footer h5 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+footer p, footer a {
+    font-size: 0.9rem;
+    color: #1b1515;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #140c0c;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+footer ul li a {
+    color: black;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
+
+footer i {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+footer .container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+@media (max-width: 576px) {
+    footer .col-md-4 {
+        margin-bottom: 20px;
+    }
+}
